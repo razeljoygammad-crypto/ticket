@@ -10,13 +10,12 @@ def home():
     return "Bot is alive!"
 
 def run():
-    app.run(host='0.0.0.0', port=8080)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host='0.0.0.0', port=port)
 
 def keep_alive():
     t = Thread(target=run)
     t.start()
-keep_alive()
-
 
 # ==========================================
 # CONFIG
@@ -220,8 +219,7 @@ async def on_ready():
 # ==========================================
 # RUN BOT
 # ==========================================
-# 🌐 KEEP ALIVE
-keep_alive()
-
-# 🤖 RUN BOT
-bot.run("YOUR_BOT_TOKEN")
+if __name__ == "__main__":
+    keep_alive()
+    token = os.getenv("DISCORD_TOKEN")
+    bot.run(token)
