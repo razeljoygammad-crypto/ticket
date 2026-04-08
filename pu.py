@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from flask import Flask
 from threading import Thread
+import os  # ✅ FIX 1
 
 app = Flask('')
 
