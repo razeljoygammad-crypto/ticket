@@ -4,15 +4,14 @@ from flask import Flask
 from threading import Thread
 import os  # ✅ FIX 1
 
-app = Flask('')
+app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Bot is alive!"
+    return "I'm alive"
 
 def run():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=10000)
 
 def keep_alive():
     t = Thread(target=run)
@@ -220,7 +219,5 @@ async def on_ready():
 # ==========================================
 # RUN BOT
 # ==========================================
-if __name__ == "__main__":
-    keep_alive()
-    token = os.getenv("DISCORD_TOKEN")
-    bot.run(token)
+keep_alive()
+bot.run(TOKEN)
